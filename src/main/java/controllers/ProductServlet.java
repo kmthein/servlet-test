@@ -34,11 +34,37 @@ public class ProductServlet extends HttpServlet {
 //		Product product = productDao.getSingleProduct(id);
 //		response.getWriter().write("Name : " + product.getName() + ", Image : " + product.getImage());
 		
-		boolean bol = productDao.deleteProductById(1301);
+//		boolean bol = productDao.deleteProductById(1301);
+//		if (bol) {
+//			response.getWriter().write("Delete successful");
+//		} else {
+//			response.getWriter().write("Delete failed");
+//		}
+		
+		String description = "The iPhone 15 represents the latest evolution in Apple's iconic smartphone lineup, blending cutting-edge technology with sleek design to deliver an unparalleled user experience. Here’s an overview of its key features:\r\n"
+				+ "\r\n"
+				+ "Design and Build\r\n"
+				+ "Materials: The iPhone 15 features a premium construction with aerospace-grade aluminum edges and a ceramic shield front cover, providing enhanced durability and a refined look.\r\n"
+				+ "Colors: Available in an array of new colors, including Midnight Black, Starlight White, Blue Mist, Sunset Gold, and Forest Green.\r\n"
+				+ "Display: It boasts a stunning 6.1-inch Super Retina XDR display with ProMotion technology, offering a 120Hz refresh rate for smoother scrolling and more responsive touch interactions.";
+		String image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRok4C4EzP8aHCxrf4SQm93SsIlcmqX6tytGg&s";
+		
+//		ADD NEW PRODUCT
+//		Product product = new Product(5, 1000, "Iphone 15", description, image);
+//		boolean bol = productDao.storeProduct(product);
+//		if (bol) {
+//			response.getWriter().write("Product added successful");
+//		} else {
+//			response.getWriter().write("Product add failed");
+//		}
+		
+//		UPDATE PRODUCT
+		Product product = new Product(1301, 8, 999, "Iphone 15 Pro", description, image);
+		boolean bol = productDao.updateProduct(product);
 		if (bol) {
-			response.getWriter().write("Delete successful");
+			response.getWriter().write("Product update successful");
 		} else {
-			response.getWriter().write("Delete failed");
+			response.getWriter().write("Product update failed");
 		}
 	}
 

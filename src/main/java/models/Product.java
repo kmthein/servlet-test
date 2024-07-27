@@ -16,6 +16,14 @@ public class Product {
 		this.description = description;
 		this.image = image;
 	}
+	public Product(int cat_id, int price, String name, String description, String image) {
+		super();
+		this.cat_id = cat_id;
+		this.price = price;
+		this.name = name;
+		this.description = description;
+		this.image = image;
+	}
 	public int getId() {
 		return id;
 	}

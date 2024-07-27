@@ -56,6 +56,7 @@ public class ProductDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		DBHelper.closeConn(con, stmt, set);
 		return product;
 	}
 	
@@ -76,7 +77,55 @@ public class ProductDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		DBHelper.closeConn(con, stmt);
+		return bol;
+	}
+	
+	public boolean storeProduct(Product product) {
+		boolean bol = false;
+		String query = "INSERT INTO products (cat_id, price, name, description, image) VALUES (?, ?, ?, ?, ?)";
+		Connection con = DBHelper.getInstance().getConn();
+		PreparedStatement stmt = null;
 		
+		try {
+			stmt = con.prepareStatement(query);
+			stmt.setInt(1, product.getCat_id());
+			stmt.setInt(2, product.getPrice());
+			stmt.setString(3, product.getName());
+			stmt.setString(4, product.getDescription());
+			stmt.setString(5, product.getImage());
+			int result = stmt.executeUpdate();
+			if (result == 1) {
+				bol = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		DBHelper.closeConn(con, stmt);
+		return bol;
+	}
+	
+	public boolean updateProduct(Product product) {
+		boolean bol = false;
+		String query = "UPDATE products SET cat_id = ?, price = ?, name = ?, description = ?, image = ? WHERE id = ?";
+		Connection con = DBHelper.getInstance().getConn();
+		PreparedStatement stmt = null;
+		try {
+			stmt = con.prepareStatement(query);
+			stmt.setInt(1, product.getCat_id());
+			stmt.setInt(2, product.getPrice());
+			stmt.setString(3, product.getName());
+			stmt.setString(4, product.getDescription());
+			stmt.setString(5, product.getImage());
+			stmt.setInt(6, product.getId());
+			int result = stmt.executeUpdate();
+			if (result == 1) {
+				bol = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		DBHelper.closeConn(con, stmt);
 		return bol;
 	}
 }
